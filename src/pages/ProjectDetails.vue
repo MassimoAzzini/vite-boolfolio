@@ -19,9 +19,8 @@ export default {
 
   methods: {
     getProject(slug) {
-      axios.get(store.apiUrl + '/projects/get-project/' + slug)
+      axios.get(store.apiUrl + 'projects/get-project/' + slug)
       .then(res => {
-        console.log(res.data.project);
         if(!res.data.project){
           this.$router.push({name: 'error-404'})
         }
@@ -29,13 +28,23 @@ export default {
         this.isLoaded = true;
         this.project = res.data.project;
       })
+    },
+
+    getImagePath(img) {
+      if (img === null) {
+
+        return store.placeholder 
+      }else{
+        return store.imageUrl + img
+      }
     }
+
   },
 
   mounted() {
     this.getProject(this.$route.params.slug);
   },
-
+  
   computed: {
     technologiesList() {
       return this.project.technologies?.map(technology => technology.name).join(', ') || '--';
@@ -88,7 +97,7 @@ export default {
     </div>
 
     <div>
-        <!-- <img src="{{ asset('storage/' + project.image) }}" alt="{{ project.image_original_name }}"> -->
+        <img :src="getImagePath(project.image)" :alt="project.image_original_name">
     </div>
 
 

@@ -2,7 +2,7 @@
 import axios from 'axios';
 import { store } from '../data/store';
 import Main from '../components/Main.vue';
-// import Loader from '../components/Loader.vue';
+import Loader from '../components/partials/Loader.vue';
 import Navigator from '../components/partials/Navigator.vue';
 
 
@@ -11,7 +11,7 @@ export default {
   components: {
     Main,
     Navigator,
-    // Loader,
+    Loader,
     
   },
   data(){
@@ -54,9 +54,8 @@ export default {
 <template>
 
   <div class="container">
-    <!-- <Loader v-if="!isLoaded" /> -->
-    <!-- v-else dentro al tag div -->
-    <div>
+    <Loader v-if="!isLoaded" />
+    <div v-else>
       <Main  />
       <Navigator
         :paginator="paginator" 

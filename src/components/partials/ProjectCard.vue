@@ -1,9 +1,12 @@
 <script>
+import { store } from "../../data/store"
 
 export default {
   name: 'ProjectCard',
   data() {
     return {
+      store
+
     }
   },
   props: {
@@ -11,9 +14,14 @@ export default {
   },
 
   methods: {
-    getImagePath(img) {
-      return new URL()
-    }
+    // getImagePath(img) {
+    //   if (img === null) {
+
+    //     return store.placeholder 
+    //   }else{
+    //     return store.imageUrl + img
+    //   }
+    // }
   },
   
 }
@@ -22,7 +30,8 @@ export default {
 <template>
   <div class="col">
     <div class="card" style="width: 18rem;">
-      <img src="" class="card-img-top" alt="...">
+      <img v-if="project.image == null" :src="store.placeholder" class="card-img-top" :alt="project.image_original_name">
+      <img v-else :src="store.imageUrl + project.image" class="card-img-top" :alt="project.image_original_name">
       <div class="card-body">
         <h5 class="card-title">{{ project.name }}</h5>
         <p class="card-text">{{ project.short_description }}</p>
@@ -33,8 +42,9 @@ export default {
         <li class="list-group-item">Type: {{ project.type?.name }}</li>
       </ul>
       <div class="card-body">
-        <a href="project.url" class="card-link">Project Link</a>
-        <a href="#" class="card-link">Dettagli</a>
+        <a :href="project.url" target="_blank" class="card-link">Project Link</a>
+        <router-link :to="{name: 'projectDetails', params:{slug: project.slug}}">Details</router-link>
+
       </div>
     </div>  
 </div>
