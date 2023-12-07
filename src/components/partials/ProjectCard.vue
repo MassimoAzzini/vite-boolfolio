@@ -8,7 +8,13 @@ export default {
   },
   props: {
     project: Object
-  }
+  },
+
+  methods: {
+    getImagePath(img) {
+      return new URL()
+    }
+  },
   
 }
 </script>
@@ -27,7 +33,7 @@ export default {
         <li class="list-group-item">Type: {{ project.type?.name }}</li>
       </ul>
       <div class="card-body">
-        <a href="{{ project.url }}" class="card-link">Project Link</a>
+        <a href="project.url" class="card-link">Project Link</a>
         <a href="#" class="card-link">Dettagli</a>
       </div>
     </div>  
