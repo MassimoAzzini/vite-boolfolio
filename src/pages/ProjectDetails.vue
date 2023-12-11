@@ -30,15 +30,6 @@ export default {
       })
     },
 
-    getImagePath(img) {
-      if (img === null) {
-
-        return store.placeholder 
-      }else{
-        return store.imageUrl + img
-      }
-    }
-
   },
 
   mounted() {
@@ -97,7 +88,7 @@ export default {
     </div>
 
     <div>
-        <img :src="getImagePath(project.image)" :alt="project.image_original_name">
+        <img :src="project?.image" :alt="project?.image_original_name">
     </div>
 
 

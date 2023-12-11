@@ -5,23 +5,20 @@ export default {
   name: 'ProjectCard',
   data() {
     return {
-      store
-
+      store,
     }
   },
   props: {
     project: Object
   },
 
-  methods: {
-    // getImagePath(img) {
-    //   if (img === null) {
+  computed: {
+  },
 
-    //     return store.placeholder 
-    //   }else{
-    //     return store.imageUrl + img
-    //   }
-    // }
+  methods: {
+  },
+
+  mounted() {
   },
   
 }
@@ -30,8 +27,7 @@ export default {
 <template>
   <div class="col">
     <div class="card" style="width: 18rem;">
-      <img v-if="project.image == null" :src="store.placeholder" class="card-img-top" :alt="project.image_original_name">
-      <img v-else :src="store.imageUrl + project.image" class="card-img-top" :alt="project.image_original_name">
+      <img :src="project?.image" class="card-img-top" :alt="project.image_original_name">
       <div class="card-body">
         <h5 class="card-title">{{ project.name }}</h5>
         <p class="card-text">{{ project.short_description }}</p>
